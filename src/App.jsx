@@ -6,7 +6,6 @@
  */
 
 import React from 'react';
-import type {PropsWithChildren} from 'react';
 import {
   SafeAreaView,
   ScrollView,
@@ -15,6 +14,7 @@ import {
   Text,
   useColorScheme,
   View,
+  Button,
 } from 'react-native';
 
 import {
@@ -25,11 +25,12 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
-type SectionProps = PropsWithChildren<{
-  title: string;
-}>;
+import { useSelector, useDispatch } from 'react-redux'
+import { decrement, increment } from './reducers/counterSlice'
 
-function Section({children, title}: SectionProps): JSX.Element {
+
+
+function Section({children, title}) {
   const isDarkMode = useColorScheme() === 'dark';
   return (
     <View style={styles.sectionContainer}>
@@ -55,12 +56,15 @@ function Section({children, title}: SectionProps): JSX.Element {
   );
 }
 
-function App(): JSX.Element {
+function App() {
   const isDarkMode = useColorScheme() === 'dark';
 
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
+
+  const count = useSelector((state) => state.counter.value)
+  const dispatch = useDispatch()
 
   return (
     <SafeAreaView style={backgroundStyle}>
@@ -68,6 +72,17 @@ function App(): JSX.Element {
         barStyle={isDarkMode ? 'light-content' : 'dark-content'}
         backgroundColor={backgroundStyle.backgroundColor}
       />
+      <View>
+        <Button
+          title="Increment value"
+          onPress={() => dispatch(increment())}
+        />
+        <Text>{count}</Text>
+        <Button
+          title="Decrement value"
+          onPress={() => dispatch(decrement())}
+        />
+      </View>
       <ScrollView
         contentInsetAdjustmentBehavior="automatic"
         style={backgroundStyle}>
