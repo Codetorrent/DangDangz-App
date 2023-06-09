@@ -3,11 +3,11 @@ import React, {useState, useEffect} from 'react';
 import {MdOutlineAccountBalanceWallet, MdOutlineSearch} from 'react-icons/md';
 
 import {
-  SafeAreaView,
   StyleSheet,
   Text,
   useColorScheme,
   View,
+  Image,
 } from 'react-native';
 
 import {Colors} from 'react-native/Libraries/NewAppScreen';
@@ -27,60 +27,19 @@ const Header = () => {
   const onClickLogo = () => {};
 
   return (
-    <View >
-      <AppText style={styles.test}>test bold</AppText>
+    // <View >
+    //   <AppText style={styles.test}>test bold</AppText>
+    // </View>
+    <View style={styles.headerView}>
+        <View accessibilityRole='button' onPress={onClickLogo} style={styles.logoView}>
+            <View style={ styles.logoBox }>
+                <Image style={styles.logoImage} source={require('../assets/images/dangdangz-logo.png')} />
+            </View>
+            <Text style={styles.logoText}>DangDangz</Text>
+        </View>
+
+        
     </View>
-    // <HeaderView>
-    //     {/* svg 파일 첫 글자 대문자 안됨 */}
-    //     <LogoView onClick={onClickLogo}>
-    //         <LogoBox>
-    //             <Image
-    //                 src={"/img/dangdangz-logo.png"}
-    //                 alt="logo"
-    //                 width={40}
-    //                 height={40}
-    //                 style={{
-    //                     transform: "rotate(180deg)",
-    //                     position: "relative",
-    //                     top: "4px",
-    //                 }}
-    //             />
-    //         </LogoBox>
-    //         <LogoTitle>DangDangz</LogoTitle>
-    //     </LogoView>
-
-    //     <SearchView>
-    //         {/* 자동완성로직 */}
-    //         <Autocomplete
-    //             // props 로 입력 필드 커스텀
-    //             renderInput={(
-    //                 params // params => 객체, 매개변수 => Customizing
-    //             ) => (
-    //                 <TextField
-    //                     {...params}
-    //                     // props
-    //                     label={"Search item, Collections, and accounts"}
-    //                 />
-    //             )}
-    //             // 드롭박스 눌렀을 때 빈 배열 => 자동완성
-    //             options={[]}
-    //         />
-    //     </SearchView>
-
-    //     <MenuView>
-    //         {/* <MenuItem>
-    //             <IconView>
-    //                 <MdOutlineSearch />
-    //             </IconView>
-    //         </MenuItem> */}
-    //         <MenuItem onClick={walletConnect}>
-    //             Connect wallet
-    //             <IconView style={{ marginLeft: "1" }}>
-    //                 <MdOutlineAccountBalanceWallet />
-    //             </IconView>
-    //         </MenuItem>
-    //     </MenuView>
-    // </HeaderView>
   );
 };
 
@@ -88,23 +47,9 @@ const styles = StyleSheet.create({
   test: {
     fontSize: 50,
   },
-  view: {
-    height: '100%',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    alignContent: 'center',
-  },
-  heading: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginBottom: 20,
-  },
   headerView: {
-    paddingTop: '2',
-    paddingRight: '4',
-    paddingBottom: '2',
-    paddingLeft: '4',
+    paddingVertical: '2',
+    paddingHorizontal: '4',
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
@@ -134,11 +79,17 @@ const styles = StyleSheet.create({
     shadowColor: '#aeabab',
     shadowOpacity: 1,
   },
+  logoImage: {
+    width:40,
+    height:40,
+    transform: [{rotate:"180deg"}],
+    position: "relative",
+    top: 4,
+  },
   logoTitle: {
     fontSize: 24,
     marginLeft: 8,
-    fontFamily: 'Passion One',
-    fontStyle: 'normal',
+    fontFamily: 'PassionOne-Regular',
   },
   menuView: {
     display: 'flex',
