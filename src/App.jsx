@@ -26,7 +26,7 @@ import {
 } from 'react-native/Libraries/NewAppScreen';
 
 import { useSelector, useDispatch } from 'react-redux'
-import { decrement, increment } from './reducers/counterSlice'
+import { decrement, increment } from './redux/reducers/counterSlice'
 
 
 
