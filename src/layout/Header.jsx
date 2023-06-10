@@ -1,6 +1,5 @@
 // import {Autocomplete, TextField} from '@mui/material';
 import React, {useState, useEffect} from 'react';
-import {MdOutlineAccountBalanceWallet, MdOutlineSearch} from 'react-icons/md';
 
 import {
   SafeAreaView,
@@ -8,6 +7,8 @@ import {
   Text,
   useColorScheme,
   View,
+  Image,
+  TouchableOpacity
 } from 'react-native';
 
 import {Colors} from 'react-native/Libraries/NewAppScreen';
@@ -19,7 +20,11 @@ import {
   rainbowWallet,
   ThirdwebProvider,
 } from '@thirdweb-dev/react-native';
+
 import AppText from '../components/common/AppText';
+
+import Icon from 'react-native-vector-icons/FontAwesome';
+const myIcon = <Icon name="rocket" size={30} color="#900" />;
 
 const Header = () => {
   const [userAccount, setUserAccount] = useState();
@@ -27,60 +32,27 @@ const Header = () => {
   const onClickLogo = () => {};
 
   return (
-    <View >
-      <AppText style={styles.test}>test bold</AppText>
+    <View style={styles.headerView}>
+      <TouchableOpacity  style={styles.logoView } >
+          <View style={ styles.logoBox }>
+              <Image style={styles.logoImage} source={require('../assets/images/dangdangz-logo.png')} />
+          </View>
+          <Text style={styles.logoText}>DangDangz</Text>
+      </TouchableOpacity >
+      <View style={styles.menuView}>
+        {/* <MenuItem>
+            <IconView>
+                <MdOutlineSearch />
+            </IconView>
+        </MenuItem> */}
+        <TouchableOpacity >
+            <AppText>Connect wallet</AppText>
+            <View style={styles.menuItem}>
+              {myIcon}
+            </View>
+        </TouchableOpacity>
+      </View>
     </View>
-    // <HeaderView>
-    //     {/* svg 파일 첫 글자 대문자 안됨 */}
-    //     <LogoView onClick={onClickLogo}>
-    //         <LogoBox>
-    //             <Image
-    //                 src={"/img/dangdangz-logo.png"}
-    //                 alt="logo"
-    //                 width={40}
-    //                 height={40}
-    //                 style={{
-    //                     transform: "rotate(180deg)",
-    //                     position: "relative",
-    //                     top: "4px",
-    //                 }}
-    //             />
-    //         </LogoBox>
-    //         <LogoTitle>DangDangz</LogoTitle>
-    //     </LogoView>
-
-    //     <SearchView>
-    //         {/* 자동완성로직 */}
-    //         <Autocomplete
-    //             // props 로 입력 필드 커스텀
-    //             renderInput={(
-    //                 params // params => 객체, 매개변수 => Customizing
-    //             ) => (
-    //                 <TextField
-    //                     {...params}
-    //                     // props
-    //                     label={"Search item, Collections, and accounts"}
-    //                 />
-    //             )}
-    //             // 드롭박스 눌렀을 때 빈 배열 => 자동완성
-    //             options={[]}
-    //         />
-    //     </SearchView>
-
-    //     <MenuView>
-    //         {/* <MenuItem>
-    //             <IconView>
-    //                 <MdOutlineSearch />
-    //             </IconView>
-    //         </MenuItem> */}
-    //         <MenuItem onClick={walletConnect}>
-    //             Connect wallet
-    //             <IconView style={{ marginLeft: "1" }}>
-    //                 <MdOutlineAccountBalanceWallet />
-    //             </IconView>
-    //         </MenuItem>
-    //     </MenuView>
-    // </HeaderView>
   );
 };
 
@@ -101,10 +73,8 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   headerView: {
-    paddingTop: '2',
-    paddingRight: '4',
-    paddingBottom: '2',
-    paddingLeft: '4',
+    paddingVertical: 2,
+    paddingHorizontal: 4,
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
@@ -115,17 +85,14 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    marginRight: '4',
+    marginRight: 4,
   },
   logoBox: {
     display: 'flex',
     justifyContent: 'center',
     width: 45,
     height: 45,
-    borderTopLeftRadius: '50%',
-    borderTopRightRadius: '50%',
-    borderBottomRightRadius: '50%',
-    borderBottomLeftRadius: '50%',
+    borderRadius: 50,
     shadowOffset: {
       width: 0,
       height: 5,
@@ -134,11 +101,16 @@ const styles = StyleSheet.create({
     shadowColor: '#aeabab',
     shadowOpacity: 1,
   },
-  logoTitle: {
+  logoImage: {
+    width:40,
+    height:40,
+    transform: [{rotate:"180deg"}],
+    position: "relative",
+    top: 4,
+  },
+  logoText: {
     fontSize: 24,
-    marginLeft: 8,
-    fontFamily: 'Passion One',
-    fontStyle: 'normal',
+    fontFamily: 'PassionOne-Regular',
   },
   menuView: {
     display: 'flex',
@@ -146,23 +118,16 @@ const styles = StyleSheet.create({
   },
   menuItem: {
     display: 'flex',
-    paddingTop: 10,
-    paddingRight: 10,
-    paddingBottom: 10,
-    paddingLeft: 10,
-    marginTop: 0,
+    padding: 10,
+    marginVertical: 0,
     marginRight: 4,
-    marginBottom: 0,
-    marginLeft: 4,
+    marginLeft: 1,
     color: '#8a939b',
     alignItems: 'center',
     borderWidth: 3,
     borderColor: '#e5e8eb',
     borderStyle: 'solid',
-    borderTopLeftRadius: 12,
-    borderTopRightRadius: 12,
-    borderBottomRightRadius: 12,
-    borderBottomLeftRadius: 12,
+    borderRadius: 12,
     shadowOffset: {
       width: 0,
       height: 5,
@@ -177,14 +142,8 @@ const styles = StyleSheet.create({
     borderWidth: 3,
     borderColor: '#e5e8eb',
     borderStyle: 'solid',
-    borderTopLeftRadius: 12,
-    borderTopRightRadius: 12,
-    borderBottomRightRadius: 12,
-    borderBottomLeftRadius: 12,
-    paddingTop: 3,
-    paddingRight: 3,
-    paddingBottom: 3,
-    paddingLeft: 3,
+    borderRadius: 12,
+    padding: 3,
     backgroundColor: '#e5e8eb',
     fontSize: 3,
   },
