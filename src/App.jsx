@@ -24,7 +24,10 @@ import {
 } from 'react-native';
 
 import {Colors} from 'react-native/Libraries/NewAppScreen';
-import Header from './layout/Header';
+import Header from './components/layout/Header';
+import {
+  Main,
+} from './pages';
 
 const App = () => {
   return (
@@ -43,17 +46,10 @@ const AppInner = () => {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
 
-  const textStyles = {
-    color: isDarkMode ? Colors.white : Colors.black,
-    ...styles.heading,
-  };
 
   return (
     <SafeAreaView style={backgroundStyle}>
-      <View style={styles.view}>
-        <Text style={textStyles}>React Native thirdweb starter</Text>
-        <ConnectWallet />
-      </View>
+      <Main />
     </SafeAreaView>
   );
 };

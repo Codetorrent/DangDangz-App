@@ -14,43 +14,58 @@ import {
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 
 import {
+  useConnect,
   ConnectWallet,
   localWallet,
   metamaskWallet,
   rainbowWallet,
   ThirdwebProvider,
+  useAddress,
 } from '@thirdweb-dev/react-native';
 
-import AppText from '../components/common/AppText';
+import AppText from '../common/AppText';
 
-import Icon from 'react-native-vector-icons/FontAwesome';
-const myIcon = <Icon name="rocket" size={30} color="#900" />;
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const Header = () => {
   const [userAccount, setUserAccount] = useState();
 
-  const onClickLogo = () => {};
+  const metamaskConfig = metamaskWallet();
+
+  const connect = useConnect();
+  const address = useAddress();
+
+  const connectWallet = async () => {
+    const wallet = await connect(metamaskConfig, {chainId: 80001});
+  };
 
   return (
     <View style={styles.headerView}>
       <TouchableOpacity  style={styles.logoView } >
           <View style={ styles.logoBox }>
-              <Image style={styles.logoImage} source={require('../assets/images/dangdangz-logo.png')} />
+              <Image style={styles.logoImage} source={require('../../assets/images/dangdangz-logo.png')} />
           </View>
           <Text style={styles.logoText}>DangDangz</Text>
       </TouchableOpacity >
       <View style={styles.menuView}>
-        {/* <MenuItem>
-            <IconView>
-                <MdOutlineSearch />
-            </IconView>
-        </MenuItem> */}
-        <TouchableOpacity >
-            <AppText>Connect wallet</AppText>
-            <View style={styles.menuItem}>
-              {myIcon}
+      <TouchableOpacity style={styles.menuItem}>
+            <View style={styles.iconView}>
+              <Icon name="magnify" size={40}  />
             </View>
         </TouchableOpacity>
+        {
+          (address) ?
+          <TouchableOpacity style={styles.menuItem} onPress={connectWallet} >
+            <AppText>{address.slice(0, 6) + '...' + address.slice(-4)}</AppText>
+          </TouchableOpacity>
+          :
+          <TouchableOpacity style={styles.menuItem} onPress={connectWallet} >
+            <AppText>Connect {"\n"} wallet</AppText>
+            <View style={styles.iconView}>
+              <Icon name="wallet-outline" size={40}  />
+            </View>
+          </TouchableOpacity>
+        }
       </View>
     </View>
   );
@@ -74,17 +89,16 @@ const styles = StyleSheet.create({
   },
   headerView: {
     paddingVertical: 2,
-    paddingHorizontal: 4,
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
   },
   logoView: {
-    cursor: 'pointer',
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
+    paddingHorizontal: 20,
     marginRight: 4,
   },
   logoBox: {
@@ -92,13 +106,13 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     width: 45,
     height: 45,
-    borderRadius: 50,
+    borderRadius: 20,
     shadowOffset: {
       width: 0,
       height: 5,
     },
-    shadowRadius: 5,
-    shadowColor: '#aeabab',
+    shadowRadius: 1,
+    shadowColor: 'black',
     shadowOpacity: 1,
   },
   logoImage: {
@@ -118,6 +132,7 @@ const styles = StyleSheet.create({
   },
   menuItem: {
     display: 'flex',
+    flexDirection: 'row',
     padding: 10,
     marginVertical: 0,
     marginRight: 4,
@@ -135,7 +150,6 @@ const styles = StyleSheet.create({
     shadowRadius: 0,
     shadowColor: '#e5e8eb',
     shadowOpacity: 1,
-    cursor: 'pointer',
   },
   iconView: {
     display: 'flex',
@@ -143,20 +157,10 @@ const styles = StyleSheet.create({
     borderColor: '#e5e8eb',
     borderStyle: 'solid',
     borderRadius: 12,
-    padding: 3,
+    padding: 0,
     backgroundColor: '#e5e8eb',
-    fontSize: 3,
   },
 });
 
-// const SearchView = styled.div`
-//   flex: 1;
-//   border: 3px solid #e5e8eb;
-//   border-radius: 12px;
-//   box-shadow: 0px 5px 0px #e5e8eb;
-//   @media screen and (max-width: 768px) {
-//     display: none;
-//   }
-// `;
 
 export default Header;
