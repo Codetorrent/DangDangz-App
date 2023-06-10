@@ -15,6 +15,7 @@ import {Colors} from 'react-native/Libraries/NewAppScreen';
 
 import {
   useConnect,
+  useDisconnect,
   ConnectWallet,
   localWallet,
   metamaskWallet,
@@ -34,6 +35,7 @@ const Header = () => {
 
   const connect = useConnect();
   const address = useAddress();
+  const disconnect = useDisconnect();
 
   const connectWallet = async () => {
     const wallet = await connect(metamaskConfig, {chainId: 80001});
@@ -55,7 +57,7 @@ const Header = () => {
         </TouchableOpacity>
         {
           (address) ?
-          <TouchableOpacity style={styles.menuItem} onPress={connectWallet} >
+          <TouchableOpacity style={styles.menuItem} onPress={disconnect} >
             <AppText>{address.slice(0, 6) + '...' + address.slice(-4)}</AppText>
           </TouchableOpacity>
           :

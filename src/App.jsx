@@ -33,14 +33,8 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import PuppyCard from './components/PuppyCard';
 
-function HomeScreen() {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Home!aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</Text>
-    </View>
-  );
-}
 
 function SettingsScreen() {
   return (
@@ -53,17 +47,36 @@ const Tab = createBottomTabNavigator();
 function MyTabs() {
   return (
     <Tab.Navigator
-      screenOptions={{
+    screenOptions={({ route }) => ({
         headerShown: false,
-      }}
+        // tabBarIcon: ({ focused, color, size }) => {
+        //   let iconName;
+
+        //   if (route.name === 'Home') {
+        //     iconName = focused
+        //       ? 'ios-information-circle'
+        //       : 'ios-information-circle-outline';
+        //   } else if (route.name === 'Settings') {
+        //     iconName = focused ? 'ios-list' : 'ios-list-outline';
+        //   }
+
+        //   // You can return any component that you like here!
+        //   return <Ionicons name={iconName} size={size} color={color} />;
+        // },
+        tabBarActiveTintColor: 'white',
+        // tabBarInactiveTintColor: 'gray',
+        tabBarActiveBackgroundColor:'#04B154',
+        tabBarInactiveBackgroundColor:'#258327',
+      })}
+      
       initialRouteName="home"
     >
-      <Tab.Screen name="Home" component={HomeScreen} options={{
+      <Tab.Screen name="Home" component={Main} options={{
         tabBarIcon: ({ color, size }) => (
           <MaterialCommunityIcons name="home" color={color} size={size} />
         ),
       }}/>
-      <Tab.Screen name="MyDangDangz" component={SettingsScreen} options={{
+      <Tab.Screen name="MyDangDangz" component={PuppyCard} options={{
         tabBarIcon: ({ color, size }) => (
           <MaterialCommunityIcons name="dog" color={color} size={size} />
         ),
