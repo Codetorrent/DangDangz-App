@@ -25,7 +25,7 @@ import {
 
 import AppText from '../common/AppText';
 
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import MaterialCommunityIcons  from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const Header = () => {
   const [userAccount, setUserAccount] = useState();
@@ -50,7 +50,7 @@ const Header = () => {
       <View style={styles.menuView}>
       <TouchableOpacity style={styles.menuItem}>
             <View style={styles.iconView}>
-              <Icon name="magnify" size={40}  />
+              <MaterialCommunityIcons  name="magnify" size={40}  />
             </View>
         </TouchableOpacity>
         {
@@ -62,7 +62,7 @@ const Header = () => {
           <TouchableOpacity style={styles.menuItem} onPress={connectWallet} >
             <AppText>Connect {"\n"} wallet</AppText>
             <View style={styles.iconView}>
-              <Icon name="wallet-outline" size={40}  />
+              <MaterialCommunityIcons  name="wallet-outline" size={40}  />
             </View>
           </TouchableOpacity>
         }

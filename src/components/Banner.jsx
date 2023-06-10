@@ -4,8 +4,8 @@ import { StyleSheet, Text, View, Image } from 'react-native'
 
 const Banner = ({...props}) => {
     return (
-        <View  >
-              <Image style={styles.banner} source={props.image} />
+        <View>
+          <Image style={styles.banner} source={props.image} />
         </View>
     );
 };
