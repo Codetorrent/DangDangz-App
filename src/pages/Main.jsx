@@ -9,6 +9,7 @@ import {
 
 import {Banner} from '../components';
 import PuppyCard from '../components/PuppyCard';
+import Header from '../components/layout/Header';
 
 const upperBanner = require('../assets/images/upper-banner.png');
 const lowerBanner = require('../assets/images/lower-banner.png');
@@ -16,11 +17,14 @@ const lowerBanner = require('../assets/images/lower-banner.png');
 const Main = ({navigation}) => {
 
   return (
+    <>
+    <Header />
     <ScrollView>
       <Banner image={upperBanner} />
       <PuppyCard navigation={navigation} />
       <Banner image={lowerBanner} />
     </ScrollView>
+    </>
   );
 };
 

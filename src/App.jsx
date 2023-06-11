@@ -139,7 +139,7 @@ const App = () => {
         activeChain="binance-testnet"
         supportedWallets={[metamaskWallet(), rainbowWallet(), localWallet()]}>
 
-        <Header />
+        {/* <Header /> */}
 
         <Tabs />
 
