@@ -27,6 +27,7 @@ import {Colors} from 'react-native/Libraries/NewAppScreen';
 import Header from './components/layout/Header';
 import {
   Main,
+  Minting,
 } from './pages';
 
 import { NavigationContainer } from '@react-navigation/native';
@@ -60,7 +61,7 @@ const Stacks = () => {
           />
           <Stack.Screen 
           name="Minting" 
-          component={PuppyCard} 
+          component={Minting} 
           options={{ headerShown: false }}
           />
         </Stack.Navigator>
@@ -138,7 +139,7 @@ const App = () => {
         <Header />
 
         <Tabs />
-        
+
     </ThirdwebProvider>
     </NavigationContainer>
   );
