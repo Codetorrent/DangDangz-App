@@ -31,6 +31,7 @@ import {
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
@@ -45,9 +46,28 @@ function SettingsScreen() {
   );
 
 }
+
+const Stack = createNativeStackNavigator()
 const Tab = createBottomTabNavigator();
 
-function AppInner() {
+const Stacks = () => {
+  return (
+    <Stack.Navigator>
+          <Stack.Screen
+            name="Main"
+            component={Main}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen 
+          name="Minting" 
+          component={PuppyCard} 
+          options={{ headerShown: false }}
+          />
+        </Stack.Navigator>
+  )
+}
+
+const Tabs = () => {
   return (
     <Tab.Navigator
     screenOptions={({ route }) => ({
@@ -65,9 +85,9 @@ function AppInner() {
         
       })}
       
-      initialRouteName="home"
+      initialRouteName="Home"
     >
-      <Tab.Screen name="Home" component={Main} options={{
+      <Tab.Screen name="Home" component={Stacks} options={{
         tabBarIcon: ({ color, size }) => (
           <View style={styles.iconView}>
           <MaterialCommunityIcons name="home" color={color} size={35} />
@@ -114,8 +134,11 @@ const App = () => {
       <ThirdwebProvider
         activeChain="binance-testnet"
         supportedWallets={[metamaskWallet(), rainbowWallet(), localWallet()]}>
-      <Header />
-      <AppInner />
+
+        <Header />
+
+        <Tabs />
+        
     </ThirdwebProvider>
     </NavigationContainer>
   );

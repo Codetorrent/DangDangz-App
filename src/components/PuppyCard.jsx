@@ -11,11 +11,14 @@ import {
 } from 'react-native';
 import AppText from './common/AppText';
 
-const PuppyCard = () => {
+const PuppyCard = ({navigation}) => {
   return (
     <View style={{display:'flex', alignItems:'center'}}>
       <AppText style={styles.title}>Choose Your Puppy</AppText>
-      <View style={styles.cardContainer}>
+      <TouchableOpacity 
+        style={styles.cardContainer} 
+        onPress={()=>navigation.navigate('Minting')}
+      >
         <View>
           <Image
             style={styles.cardInu}
@@ -41,7 +44,7 @@ const PuppyCard = () => {
             </View>
           </View>
         </View>
-      </View>
+      </TouchableOpacity>
     </View>
   );
 };

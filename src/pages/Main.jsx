@@ -14,12 +14,12 @@ import PuppyCard from '../components/PuppyCard';
 const upperBanner = require('../assets/images/upper-banner.png');
 const lowerBanner = require('../assets/images/lower-banner.png');
 
-const Main = () => {
+const Main = ({navigation}) => {
 
   return (
     <ScrollView>
       <Banner image={upperBanner} />
-      <PuppyCard />
+      <PuppyCard navigation={navigation} />
       <Banner image={lowerBanner} />
     </ScrollView>
   );
