@@ -3,11 +3,13 @@ import React from 'react';
 import {
   SafeAreaView,
   StyleSheet,
+  ScrollView,
   Text,
   View,
 } from 'react-native';
 
 import {Banner} from '../components';
+import PuppyCard from '../components/PuppyCard';
 
 const upperBanner = require('../assets/images/upper-banner.png');
 const lowerBanner = require('../assets/images/lower-banner.png');
@@ -15,10 +17,11 @@ const lowerBanner = require('../assets/images/lower-banner.png');
 const Main = () => {
 
   return (
-    <>
+    <ScrollView>
       <Banner image={upperBanner} />
+      <PuppyCard />
       <Banner image={lowerBanner} />
-    </>
+    </ScrollView>
   );
 };
 

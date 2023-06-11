@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 import {
   SafeAreaView,
@@ -7,117 +7,100 @@ import {
   useColorScheme,
   View,
   Image,
-  TouchableOpacity
+  TouchableOpacity,
 } from 'react-native';
 import AppText from './common/AppText';
 
-const PuppyCard = ()=> {
+const PuppyCard = () => {
   return (
+    <View style={{display:'flex', alignItems:'center'}}>
+      <AppText style={styles.title}>Choose Your Puppy</AppText>
       <View style={styles.cardContainer}>
-      <View>
-        <Image style={styles.cardInu} source={require('../assets/images/shiba-inu.png')} />
-      </View>
-      <AppText>Shiba Inu</AppText>
-      {/* <View>
+        <View>
+          <Image
+            style={styles.cardInu}
+            source={require('../assets/images/shiba-inu.png')}
+          />
+        </View>
+        <AppText style={styles.cardTitle}>Shiba Inu</AppText>
+        <View style={styles.cardTable}>
           <View style={styles.tableCell}>
-              <View style={styles.tableHead}>
-                  <AppText>FLOOR</AppText>
-              </View>
-              <View style={styles.tableData}>
-                  <AppText>0.02 ETH</AppText>
-              </View>
+            <View style={styles.tableHead}>
+              <AppText>FLOOR</AppText>
+            </View>
+            <View style={styles.tableData}>
+              <AppText style={styles.tableData}> 0.02 ETH</AppText>
+            </View>
           </View>
           <View style={styles.tableCell}>
-              <View style={styles.tableHead}>
-                  <AppText>TOTAL VOLUME</AppText>
-              </View>
-              <View style={styles.tableData}>
-                  <AppText>0.66 ETH</AppText>
-              </View>
+            <View style={styles.tableHead}>
+              <AppText>TOTAL VOLUME</AppText>
+            </View>
+            <View>
+              <AppText style={styles.tableData}>0.66 ETH</AppText>
+            </View>
           </View>
-      </View> */}
+        </View>
       </View>
-  )
-}
+    </View>
+  );
+};
 
 const styles = StyleSheet.create({
+  title: {
+    marginTop:40,
+    fontSize: 35,
+    color: 'black'
+  },
   cardContainer: {
-    "display": "flex",
-    "flexDirection": "column",
-    "alignItems": "center",
-    "marginTop": 10,
-    "marginRight": "5%",
-    "marginBottom": 10,
-    "marginLeft": "5%",
-    "gap": 16,
-    "width": 200,
-    "height": 200,
-    "shadowOffset": {
-      "width": 0,
-      "height": 4
-    },
-    "shadowRadius": 16,
-    "shadowColor": "rgba(0, 0, 0, 0.1)",
-    "shadowOpacity": 1,
-    "borderRadius": 100,
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    marginVertical: '10%',
+    marginHorizontal: "5%",
+    gap: 5,
+    padding: 40,
+    borderRadius: 50,
+    borderColor: '#E5E8EB',
+    borderWidth: 5,
+    width: 300,
+    alignSelf: 'center',
   },
   cardInu: {
-    "display": "flex",
-    "flexDirection": "row",
-    "alignItems": "flex-start",
-    "paddingBottom": 40,
-    "width": 110,
-    "height": 200,
+    alignItems: 'flex-start',
+    width: 120,
+    height: 200,
   },
   cardTitle: {
     fontSize: 28,
+    color: 'black'
   },
   cardTable: {
-    "fontSize": 16,
-    "fontWeight": "600",
-    "display": "flex",
-    "flexDirection": "row",
-    "alignItems": "flex-start",
-    "paddingTop": 0,
-    "paddingRight": 16,
-    "paddingBottom": 0,
-    "paddingLeft": 16,
-    "width": 150,
-    "height": 25
+    fontSize: 16,
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    paddingRight: 16,
+    paddingLeft: 16,
+    width: 250,
   },
   tableCell: {
-    "display": "flex",
-    "flexDirection": "column",
-    "alignItems": "flex-start",
-    "paddingTop": 0,
-    "paddingRight": 0,
-    "paddingBottom": 0,
-    "paddingLeft": 0,
-    "gap": 8,
-    "width": 70,
-    "height": 25
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'flex-start',
+    gap: 8,
+    width: 70,
+    height: 25,
   },
   tableHead: {
-    "display": "flex",
-    "flexDirection": "row",
-    "alignItems": "flex-start",
-    "width": 70,
-    "height": 20,
-    "color": "#707A83",
-    "fontSize": 12
+    width: 70,
+    height: 20,
+    color: '#707A83',
+    fontSize: 12,
   },
   tableData: {
-    "display": "flex",
-    "flexDirection": "row",
-    "alignItems": "flex-start",
-    "paddingTop": 0,
-    "paddingRight": 51.375,
-    "paddingBottom": 0.5,
-    "paddingLeft": 0,
-    width: 70,
-    "height": 20,
-    "fontSize": 16
-  }
-})
+    color: 'black'
+  },
+});
 
 export default PuppyCard;

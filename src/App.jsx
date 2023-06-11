@@ -33,6 +33,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import PuppyCard from './components/PuppyCard';
 
 
@@ -42,48 +43,64 @@ function SettingsScreen() {
       <Text>Settings!</Text>
     </View>
   );
+
 }
 const Tab = createBottomTabNavigator();
-function MyTabs() {
+
+function AppInner() {
   return (
     <Tab.Navigator
     screenOptions={({ route }) => ({
         headerShown: false,
-        // tabBarIcon: ({ focused, color, size }) => {
-        //   let iconName;
-
-        //   if (route.name === 'Home') {
-        //     iconName = focused
-        //       ? 'ios-information-circle'
-        //       : 'ios-information-circle-outline';
-        //   } else if (route.name === 'Settings') {
-        //     iconName = focused ? 'ios-list' : 'ios-list-outline';
-        //   }
-
-        //   // You can return any component that you like here!
-        //   return <Ionicons name={iconName} size={size} color={color} />;
-        // },
+        tabBarShowLabel: false,
         tabBarActiveTintColor: 'white',
-        // tabBarInactiveTintColor: 'gray',
-        tabBarActiveBackgroundColor:'#04B154',
-        tabBarInactiveBackgroundColor:'#258327',
+        tabBarInactiveTintColor: '#A8A8A8',
+        tabBarStyle: {
+          backgroundColor: 'transparent',
+          borderTopWidth: 0,
+          marginBottom: 25,
+          position: 'absolute',
+          elevation: 0
+        },
+        
       })}
       
       initialRouteName="home"
     >
       <Tab.Screen name="Home" component={Main} options={{
         tabBarIcon: ({ color, size }) => (
-          <MaterialCommunityIcons name="home" color={color} size={size} />
-        ),
-      }}/>
-      <Tab.Screen name="MyDangDangz" component={PuppyCard} options={{
-        tabBarIcon: ({ color, size }) => (
-          <MaterialCommunityIcons name="dog" color={color} size={size} />
+          <View style={styles.iconView}>
+          <MaterialCommunityIcons name="home" color={color} size={35} />
+          </View>
+
         ),
       }}/>
       <Tab.Screen name="Game" component={SettingsScreen} options={{
         tabBarIcon: ({ color, size }) => (
-          <MaterialCommunityIcons name="nintendo-game-boy" color={color} size={size} />
+          <View style={styles.iconView}>
+            <MaterialCommunityIcons name="dog" color={color} size={35} />
+          </View>
+        ),
+      }}/>
+      <Tab.Screen name="MyDangDangz" component={PuppyCard} options={{
+        tabBarIcon: ({ color, size }) => (
+          <View style={styles.iconView}>
+        <FontAwesome5 name="dog" color={color} size={30} />
+          </View>
+        ),
+      }}/>
+      <Tab.Screen name="MyDangDang" component={PuppyCard} options={{
+        tabBarIcon: ({ color, size }) => (
+          <View style={{...styles.iconView}}>
+        <FontAwesome5 name="store" color={color} size={25} />
+          </View>
+        ),
+      }}/>
+      <Tab.Screen name="MyDangDans" component={PuppyCard} options={{
+        tabBarIcon: ({ color, size }) => (
+          <View style={styles.iconView}>
+        <MaterialCommunityIcons name="wallet-outline" color={color} size={35} />
+          </View>
         ),
       }}/>
     </Tab.Navigator>
@@ -95,27 +112,12 @@ const App = () => {
   return (
     <NavigationContainer>
       <ThirdwebProvider
-        activeChain="mumbai"
+        activeChain="binance-testnet"
         supportedWallets={[metamaskWallet(), rainbowWallet(), localWallet()]}>
       <Header />
-      <MyTabs />
-      {/* <AppInner /> */}
+      <AppInner />
     </ThirdwebProvider>
     </NavigationContainer>
-  );
-};
-
-const AppInner = () => {
-  const isDarkMode = useColorScheme() === 'dark';
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
-
-
-  return (
-    <SafeAreaView style={backgroundStyle}>
-      <Main />
-    </SafeAreaView>
   );
 };
 
@@ -132,6 +134,15 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginBottom: 20,
   },
+  iconView: {
+    display: 'flex',
+    backgroundColor:'#77717180',
+    borderRadius: 100,
+    width: 50,
+    height: 50,
+    justifyContent: 'center',
+    alignItems: 'center'  
+  }
 });
 
 export default App;
