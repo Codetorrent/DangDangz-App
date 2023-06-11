@@ -18,7 +18,6 @@ import {
   useDisconnect,
   metamaskWallet,
   useAddress,
-  useBalance,
 } from '@thirdweb-dev/react-native';
 
 import AppText from '../common/AppText';
@@ -34,9 +33,7 @@ const Header = () => {
   const address = useAddress();
   const disconnect = useDisconnect();
 
-  const tokenAddress = "0x0000000000000000000000000000000000000000";
-  const { data, isLoading } = useBalance(tokenAddress);
-
+  
   const connectWallet = async () => {
     const wallet = await connect(metamaskConfig, {chainId: 97});
   };
@@ -48,13 +45,6 @@ const Header = () => {
               <Image style={styles.logoImage} source={require('../../assets/images/dangdangz-logo.png')} />
           </View>
           <Text style={styles.logoText}>DangDangz</Text>
-          {/* {
-            data
-            ? <AppText>
-                userBalance
-              </AppText>
-            :null
-          } */}
       </TouchableOpacity >
       <View style={styles.menuView}>
       <TouchableOpacity style={styles.menuItem}>

@@ -31,6 +31,7 @@ import {
   Market,
   Minting,
   Room,
+  Wallet,
 } from './pages';
 
 import { NavigationContainer } from '@react-navigation/native';
@@ -39,17 +40,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
-import PuppyCard from './components/PuppyCard';
 
-
-function SettingsScreen() {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Settings!</Text>
-    </View>
-  );
-
-}
 
 const Stack = createNativeStackNavigator()
 const Tab = createBottomTabNavigator();
@@ -120,7 +111,7 @@ const Tabs = () => {
           </View>
         ),
       }}/>
-      <Tab.Screen name="Wallet" component={PuppyCard} options={{
+      <Tab.Screen name="Wallet" component={Wallet} options={{
         tabBarIcon: ({ color, size }) => (
           <View style={styles.iconView}>
         <MaterialCommunityIcons name="wallet-outline" color={color} size={35} />
