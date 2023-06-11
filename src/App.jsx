@@ -27,7 +27,10 @@ import {Colors} from 'react-native/Libraries/NewAppScreen';
 import Header from './components/layout/Header';
 import {
   Main,
+  Map,
+  Market,
   Minting,
+  Room,
 } from './pages';
 
 import { NavigationContainer } from '@react-navigation/native';
@@ -96,28 +99,28 @@ const Tabs = () => {
 
         ),
       }}/>
-      <Tab.Screen name="Game" component={SettingsScreen} options={{
+      <Tab.Screen name="Room" component={Room} options={{
         tabBarIcon: ({ color, size }) => (
           <View style={styles.iconView}>
             <MaterialCommunityIcons name="dog" color={color} size={35} />
           </View>
         ),
       }}/>
-      <Tab.Screen name="MyDangDangz" component={PuppyCard} options={{
+      <Tab.Screen name="Map" component={Map} options={{
         tabBarIcon: ({ color, size }) => (
           <View style={styles.iconView}>
         <FontAwesome5 name="dog" color={color} size={30} />
           </View>
         ),
       }}/>
-      <Tab.Screen name="MyDangDang" component={PuppyCard} options={{
+      <Tab.Screen name="Market" component={Market} options={{
         tabBarIcon: ({ color, size }) => (
           <View style={{...styles.iconView}}>
         <FontAwesome5 name="store" color={color} size={25} />
           </View>
         ),
       }}/>
-      <Tab.Screen name="MyDangDans" component={PuppyCard} options={{
+      <Tab.Screen name="Wallet" component={PuppyCard} options={{
         tabBarIcon: ({ color, size }) => (
           <View style={styles.iconView}>
         <MaterialCommunityIcons name="wallet-outline" color={color} size={35} />
