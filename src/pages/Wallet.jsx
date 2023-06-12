@@ -33,7 +33,7 @@ const Tokens = () => {
           <View  style={styles.tokenLogoBox} >
             <AppText style={{transform: [{rotate:"27.2deg"}], color:'white',fontSize:20}}>D</AppText>
           </View>
-          <Text style={styles.tokenName}>asdasd</Text>
+          <AppText style={styles.tokenName}>Dangdang</AppText>
         </View>
         <View style={{width:'50%', justifyContent:'center'}}>
           <Text style={styles.tokenBalance}>DDZ</Text>
@@ -50,7 +50,7 @@ const Nfts = () => {
       <View style={styles.listItem}>
         <View style={{width:'50%', flexDirection:'row', alignItems:'center'}}>
           <Image source={require('../assets/images/shiba-face.png')} style={{width:40,height:40, marginHorizontal: 2, marginVertical: 10}} />
-          <Text style={styles.tokenName}>asdasd</Text>
+          <AppText style={styles.tokenName}>asdasd</AppText>
         </View>
         <View style={{width:'50%', justifyContent:'center'}}>
           <AppText style={styles.tokenBalance}>Lv.99</AppText>
@@ -62,7 +62,16 @@ const Nfts = () => {
 
 const MyTabs = () => {
   return (
-    <Tab.Navigator>
+    <Tab.Navigator
+      screenOptions={{
+        tabBarLabelStyle: { fontSize: 12 },
+        // tabBarItemStyle: { width: 50 },
+        tabBarStyle: { alignSelf:'center', backgroundColor: '#D9D9D9', width:"60%", borderRadius:30 },
+        tabBarActiveTintColor: '#FFFFFF',
+        tabBarInactiveTintColor: '#04B154',
+        tabBarIndicatorStyle: {backgroundColor:'#04B154',height:50, borderRadius:30}
+      }}
+    >
       <Tab.Screen name="Tokens" component={Tokens} />
       <Tab.Screen name="NFTs" component={Nfts} />
     </Tab.Navigator>
@@ -84,17 +93,7 @@ const Wallet = () => {
   return (
     <>
     <View style={styles.container}>
-    <Text >{address}</Text>
-        <Web3Button
-          theme={lightTheme({
-            buttonBackgroundColor: 'black',
-            buttonTextColor: 'white',
-          })}
-          contractAddress='0xbB7CAd92c8dc5eEc6E3D960d97Fd6066dAE769D7'
-          action={() => mutateAsync({ args: ["4"] })}
-        >
-          why
-        </Web3Button>
+    
       <View style={styles.header}>
 
       </View>
@@ -110,13 +109,24 @@ const Wallet = () => {
       </View>
       <View style={styles.buttonGroup}>
         <View style={styles.button}>
-          <Image source={require('../assets/images/coin.png')} />
+          <Image source={require('../assets/images/money-send.png')} />
         </View>
         <View style={styles.button}>
-          <Image source={require('../assets/images/coin.png')} />
+          <Image source={require('../assets/images/add.png')} />
         </View>
         <View style={styles.button}>
-          <Image source={require('../assets/images/coin.png')} />
+          <Image source={require('../assets/images/exchange.png')} />
+        </View>
+      </View>
+      <View style={styles.labelGroup}>
+        <View style={styles.labelBox}>
+          <AppText style={{color: '#04B154'}}>Send</AppText>
+        </View>
+        <View style={styles.labelBox}>
+          <AppText style={{color: '#04B154'}}>Buy</AppText>
+        </View>
+        <View style={styles.labelBox}>
+          <AppText style={{color: '#04B154'}}>Swap</AppText>
         </View>
       </View>
     </View>
@@ -142,10 +152,11 @@ const styles = StyleSheet.create({
   balanceBox:{
     display: 'flex',
     flexDirection: 'row',
+    marginVertical: 50,
   },
   coinImg: {
-    width:40,
-    height:40,
+    width:45,
+    height:45,
   },
   balanceText: {
     color: 'black',
@@ -156,15 +167,28 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     width:"80%",
     justifyContent: 'space-between',
-    marginBottom: 50,
   },
   button:{
     justifyContent: 'center',
     alignItems: 'center',
     width: 80,
     height: 80,
-    backgroundColor: 'pink',
-    borderRadius: 100
+    borderRadius: 100,
+    borderWidth: 1,
+    borderColor: '#D9D9D9'
+  },
+  labelGroup: {
+    display:'flex',
+    flexDirection: 'row',
+    width:"80%",
+    justifyContent: 'space-between',
+  },
+  labelBox: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: 80,
+    marginTop: 5,
+    marginBottom: 20
   },
   listItems: {
   flex: 1,

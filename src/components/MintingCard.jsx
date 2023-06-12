@@ -1,4 +1,5 @@
 import React from 'react';
+import { ThirdwebSDK } from "@thirdweb-dev/sdk/evm";
 
 import {
   StyleSheet,
@@ -6,11 +7,37 @@ import {
   View,
   Image,
   TouchableOpacity,
+  Alert,
 } from 'react-native';
 
 import AppText from './common/AppText';
 
-const MintingCard = ({navigation}) => {
+import { 
+  useContract,
+  useContractWrite,
+  useMintNFT,
+  useAddress
+  } from "@thirdweb-dev/react-native";
+
+const MintingCard = () => {
+  const sdk = new ThirdwebSDK("binance-testnet");
+  
+
+  const { contract : NftContact } = useContract("0xBadd883f680E5A853fAd6193E62D8A78A52c86A1");
+  const { mutateAsync: batchMint, isLoading } = useContractWrite(NftContact, "batchMint")
+  const address = useAddress();
+
+
+  const excuteMint = async () => {
+    try {
+      const data = await batchMint({ args: [address, '1'] }); 
+      Alert.alert('Mint', 'Success')
+    } catch (err) {
+      console.error("contract call failure", err);
+      Alert.alert('Mint', 'failed')
+    }
+  }
+
   return (
     <View style={{display:'flex', alignItems:'center'}}>
       <View 
@@ -28,7 +55,7 @@ const MintingCard = ({navigation}) => {
           </View>
           <TouchableOpacity 
           style={styles.buyButton}
-          onPress={()=>{}}
+          onPress={excuteMint}
           >
             <AppText style={{lineHeight:32, textAlign:'center'}}>Buy Now</AppText>
             </TouchableOpacity>
