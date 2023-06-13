@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { 
   StyleSheet, 
   Text,
@@ -36,7 +36,7 @@ const Tokens = () => {
           <AppText style={styles.tokenName}>Dangdang</AppText>
         </View>
         <View style={{width:'50%', justifyContent:'center'}}>
-          <Text style={styles.tokenBalance}>DDZ</Text>
+          <Text style={styles.tokenBalance}>10000DDZ</Text>
         </View>
       </View>
     </View>
@@ -45,17 +45,24 @@ const Tokens = () => {
 }
 
 const Nfts = () => {
+  const [nfts, setNfts] = useState([]);
+
+
   return (
     <View style={styles.listItems}>
-      <View style={styles.listItem}>
-        <View style={{width:'50%', flexDirection:'row', alignItems:'center'}}>
-          <Image source={require('../assets/images/shiba-face.png')} style={{width:40,height:40, marginHorizontal: 2, marginVertical: 10}} />
-          <AppText style={styles.tokenName}>asdasd</AppText>
-        </View>
-        <View style={{width:'50%', justifyContent:'center'}}>
-          <AppText style={styles.tokenBalance}>Lv.99</AppText>
-        </View>
-      </View>
+      {
+        nfts.map((nft,id)=>
+          <View style={styles.listItem}>
+          <View style={{width:'50%', flexDirection:'row', alignItems:'center'}}>
+            <Image source={require('../assets/images/shiba-face.png')} style={{width:40,height:40, marginHorizontal: 2, marginVertical: 10}} />
+            <AppText style={styles.tokenName}># {id+1}DangDangz</AppText>
+          </View>
+          <View style={{width:'50%', justifyContent:'center'}}>
+            <AppText style={styles.tokenBalance}>Lv.99</AppText>
+          </View>
+          </View>
+        )
+      }
     </View>
   )
 }
@@ -84,10 +91,10 @@ const Wallet = () => {
   const tokenAddress = "0x0000000000000000000000000000000000000000";
   const { data:balance, isLoading:balanceLoading } = useBalance(tokenAddress);
 
-    const {contract} = useContract("0xc61c07D060F6FB204b5d6D694D042Bb36ce67674")
-  const { data } = useContractRead(contract, "showSender");
-  const { mutateAsync, isLoading, error } = useContractWrite(contract, "store");
-  const address = useAddress();
+  //   const {contract} = useContract("0xc61c07D060F6FB204b5d6D694D042Bb36ce67674")
+  // const { data } = useContractRead(contract, "showSender");
+  // const { mutateAsync, isLoading, error } = useContractWrite(contract, "store");
+  // const address = useAddress();
 
 
   return (
@@ -100,7 +107,7 @@ const Wallet = () => {
       <View style={styles.balanceBox}>
         <Image style={styles.coinImg} source={require('../assets/images/coin.png')} />
       {
-        data
+        balance
         ? <AppText style={styles.balanceText}>
             {parseFloat(ethers.utils.formatEther(balance.value)).toFixed(4)} TBNB
           </AppText>

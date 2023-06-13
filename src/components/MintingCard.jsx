@@ -22,15 +22,16 @@ import {
 const MintingCard = () => {
   const sdk = new ThirdwebSDK("binance-testnet");
   
-
-  const { contract : NftContact } = useContract("0xBadd883f680E5A853fAd6193E62D8A78A52c86A1");
-  const { mutateAsync: batchMint, isLoading } = useContractWrite(NftContact, "batchMint")
   const address = useAddress();
+  const { contract } = useContract("0xb58c0F745327A4939b5dB320F8Ff2b4bd1f88Bd8");
+  const { mutateAsync: batchMint, isLoading } = useContractWrite(contract, "batchMint")
 
+  
 
   const excuteMint = async () => {
+
     try {
-      const data = await batchMint({ args: [address, '1'] }); 
+      const data = await batchMint({ args: ["0xfe62d439Efbe001432c88576aEf893FF7Ccd604E", '1'] }); 
       Alert.alert('Mint', 'Success')
     } catch (err) {
       console.error("contract call failure", err);
